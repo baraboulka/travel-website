@@ -12,6 +12,7 @@
     top: 6rem;
     right: 6rem;
     z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
   }
 
   &__background {
@@ -26,20 +27,25 @@
       $color-primary-dark
     );
     z-index: 1000;
-    transform: scale(100);
+
+    transition: transform 0.3s;
   }
 
   &__nav {
-    height: 100vh;
-    width: 100%;
+    height: 0;
     position: fixed;
     top: 0;
     right: 0;
     z-index: 1500;
+
+    opacity: 0;
+    width: 0;
+    transition: all 0.3s;
   }
 
   &__list {
     position: absolute;
+    width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -89,5 +95,15 @@
       text-transform: uppercase;
       text-decoration: none;
     }
+  }
+
+  &__checkbox:checked ~ &__background {
+    transform: scale(100);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    height: 100vh;
+    width: 100%;
   }
 }
